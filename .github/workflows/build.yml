@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/esphome/esphome
+      image: ghcr.io/esphome/esphome:2024.7.3
 
     steps:
       - uses: actions/checkout@v4
@@ -19,12 +19,16 @@ jobs:
         run: |
           esphome config radiator-fan-controller.yml
 
-      - name: Build Firmware
+      - name: test
         run: |
-          esphome compile radiator-fan-controller.yml
+          pwd
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: smart-radiator-fan-controller
-          path: /config/.pioenvs/smart-radiator-fan-controller/firmware.bin
+      # - name: Build Firmware
+      #   run: |
+      #     esphome compile radiator-fan-controller.yml
+
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: smart-radiator-fan-controller
+      #     path: /config/.pioenvs/smart-radiator-fan-controller/firmware.bin
