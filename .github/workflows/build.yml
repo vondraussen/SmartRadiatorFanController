@@ -19,16 +19,12 @@ jobs:
         run: |
           esphome config radiator-fan-controller.yml
 
-      - name: test
+      - name: Build Firmware
         run: |
-          pwd
+          esphome compile radiator-fan-controller.yml
 
-      # - name: Build Firmware
-      #   run: |
-      #     esphome compile radiator-fan-controller.yml
-
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: smart-radiator-fan-controller
-      #     path: /config/.pioenvs/smart-radiator-fan-controller/firmware.bin
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smart-radiator-fan-controller
+          path: .esphome/build/smart-radiator-fan-controller/.pioenvs/smart-radiator-fan-controller/firmware.bin
