@@ -19,6 +19,15 @@ jobs:
         run: |
           esphome config radiator-fan-controller.yml
 
+      - name: Cache esphome toolchain
+        id: cache-esphome
+        uses: actions/cache@v4
+        with:
+          path: .esphome/platformio
+          key: esphome-2024.7.3
+          restore-keys: |
+            esphome-
+
       - name: Build Firmware
         run: |
           esphome compile radiator-fan-controller.yml
