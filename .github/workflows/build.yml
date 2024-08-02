@@ -15,7 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Test
+      - name: Test Config
         run: |
-          ls -al
-          which esphome
+          esphome config radiator-fan-controller.yml
+
+      - name: Build Firmware
+        run: |
+          esphome compile radiator-fan-controller.yml
