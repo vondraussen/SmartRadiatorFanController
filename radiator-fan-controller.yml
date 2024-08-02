@@ -1,0 +1,82 @@
+esphome:
+  name: "smart-radiator-fan-controller"
+  friendly_name: SmartRadiatorFanController
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+# api:
+#   encryption:
+#     key: "blabla"
+
+ota:
+  platform: esphome
+
+wifi:
+  ssid: exampleexample
+  password: exampleexample
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "RadiatorFanController-Fallback"
+    password: "fallbackhotspotactivated"
+
+captive_portal:
+
+web_server:
+  port: 80
+  version: 3
+  local: true
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Berlin
+
+datetime:
+  - platform: template
+    id: start_time_1
+    type: time
+    name: Fan Start Time 1
+    optimistic: yes
+    initial_value: "06:00:00"
+    restore_value: true
+  - platform: template
+    id: stop_time_1
+    type: time
+    name: Fan Stop Time 1
+    optimistic: yes
+    initial_value: "12:00:00"
+    restore_value: true
+  - platform: template
+    id: start_time_2
+    type: time
+    name: Fan Start Time 2
+    optimistic: yes
+    initial_value: "14:00:00"
+    restore_value: true
+  - platform: template
+    id: stop_time_2
+    type: time
+    name: Fan Stop Time 2
+    optimistic: yes
+    initial_value: "18:00:00"
+    restore_value: true
+
+output:
+  - platform: ledc
+    frequency: "19531Hz"
+    pin: GPIO16
+    id: fans
+
+fan:
+  - platform: speed
+    output: fans
+    name: "Fan"
+    id: radiator_fan

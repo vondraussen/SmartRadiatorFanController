@@ -1,0 +1,11 @@
+---
+services:
+  esphome:
+    container_name: esphome
+    image: ghcr.io/esphome/esphome
+    volumes:
+      - ${PWD}/config:/config
+      - ${PWD}/radiator-fan-controller.yml:/config/radiator-fan-controller.yml
+      - /etc/localtime:/etc/localtime:ro
+    privileged: true
+    network_mode: host
