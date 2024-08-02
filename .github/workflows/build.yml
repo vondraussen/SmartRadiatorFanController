@@ -27,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: smart-radiator-fan-controller
-          path: .esphome/build/smart-radiator-fan-controller/.pioenvs/smart-radiator-fan-controller/firmware.bin
+          path: .esphome/build/smart-radiator-fan-controller/.pioenvs/smart-radiator-fan-controller/firmware.factory.bin
