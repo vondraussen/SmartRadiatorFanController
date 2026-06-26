@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ "**" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
       image: ghcr.io/esphome/esphome:2024.7.3
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Test Config
         run: |
           esphome config radiator-fan-controller.yml
@@ -33,7 +33,7 @@ jobs:
           esphome compile radiator-fan-controller.yml
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: smart-radiator-fan-controller
           path: .esphome/build/smart-radiator-fan-controller/.pioenvs/smart-radiator-fan-controller/firmware.factory.bin
