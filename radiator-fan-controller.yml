@@ -3,7 +3,7 @@ esphome:
   friendly_name: SmartRadiatorFanController
 
 esp32:
-  board: esp32dev
+  board: esp32-c3-devkitm-1
   framework:
     type: arduino
 
@@ -72,7 +72,7 @@ datetime:
 output:
   - platform: ledc
     frequency: "19531Hz"
-    pin: GPIO16
+    pin: GPIO3
     id: fans
 
 fan:
